@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   display.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nhendric <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tpitout <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/09 21:11:45 by nhendric          #+#    #+#             */
-/*   Updated: 2018/09/04 12:51:03 by tpitout          ###   ########.fr       */
+/*   Created: 2018/09/05 08:06:47 by tpitout           #+#    #+#             */
+/*   Updated: 2018/09/05 12:05:34 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,16 +75,21 @@ int			fill(t_data *in)
 {
 	int			i;
 	int			j;
+	int			x;
+	int			k;
 
+	k = in->pull;
+	x = 0;
 	i = 0;
 	while (i < in->map_h)
 	{
 		j = 0;
 		while (j < in->map_w)
 		{
-			in->dots[i][j].x = ((j * 30) + 2 * (-1 * in->dots[i][j].z)) + 50;
-			in->dots[i][j].y = ((i * 30) + 1 * (-1 * in->dots[i][j].z)) + 50;
+			in->dots[i][j].x = ((j * 30) + (2) * (-1 * in->dots[i][j].z)) + 100 + x * 2;
+			in->dots[i][j].y = ((i * 30) + (5*k) * (-1 * in->dots[i][j].z)) + 100 + x * 1.2 ;
 			j++;
+			x++;
 		}
 		i++;
 	}

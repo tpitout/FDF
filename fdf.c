@@ -3,21 +3,28 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nhendric <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tpitout <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/08/04 16:57:06 by nhendric          #+#    #+#             */
-/*   Updated: 2018/09/04 12:50:36 by tpitout          ###   ########.fr       */
+/*   Created: 2018/09/04 13:46:00 by tpitout           #+#    #+#             */
+/*   Updated: 2018/09/05 12:13:51 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fdf.h"
 
-int			press(int key)
+int			press(int key, t_data *in)
 {
-	if (key == 53)
+
+	if (key == KEY_ESC)
 		exit(1);
+	if (key == KEY_A)
+	{
+		in->pull += 1;
+		fill(in);
+	}
 	return (0);
 }
+
 
 int			main(int ac, char **av)
 {
@@ -25,7 +32,7 @@ int			main(int ac, char **av)
 
 	if (av[1] == 0 || ac != 2)
 	{
-		ft_putstr(BOLDRED "ERROR: INVALID INPUT/FILE");
+		ft_putstr(RED "ERROR: INVALID INPUT/FILE");
 		exit(1);
 	}
 	if (!(in = (t_data *)malloc(sizeof(t_data))))
@@ -38,9 +45,11 @@ int			main(int ac, char **av)
 	if (!(in->inst.win = mlx_new_window(in->inst.mlx,
 							WIN_W, WIN_H, in->map_name)))
 		return (0);
+	in->pull = 0;
 	map_read(in);
+	mlx_new_image(in->inst.mlx, WIN_W, WIN_H );
 	fill(in);
-	mlx_key_hook(in->inst.win, press, 0);
+	mlx_key_hook(in->inst.win, press, in);
 	mlx_loop(in->inst.mlx);
 	return (0);
 }
