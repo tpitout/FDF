@@ -6,7 +6,7 @@
 /*   By: tpitout <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 08:06:47 by tpitout           #+#    #+#             */
-/*   Updated: 2018/09/05 12:05:34 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/06 14:21:57 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,23 +76,33 @@ int			fill(t_data *in)
 	int			i;
 	int			j;
 	int			x;
-	int			k;
+	int			a;
+	int			s;
+	int			m;
 
-	k = in->pull;
+	m = 30;
+	s = in->push;
+	a = in->pull;
 	x = 0;
 	i = 0;
+
 	while (i < in->map_h)
 	{
 		j = 0;
-		while (j < in->map_w)
+		while (j < in->map_w)	
 		{
-			in->dots[i][j].x = ((j * 30) + (2) * (-1 * in->dots[i][j].z)) + 100 + x * 2;
-			in->dots[i][j].y = ((i * 30) + (5*k) * (-1 * in->dots[i][j].z)) + 100 + x * 1.2 ;
+			if (30+a-s <= 0)
+				in->neg = 1;
+			else 
+				in->neg = 0;
+			in->dots[i][j].x = (((j * (30+a-s)) + (2) * (-1 * in->dots[i][j].z)) + (300 + in->x)) ;
+			in->dots[i][j].y = (((i * (30+a-s)) + (5)  * (-1 * in->dots[i][j].z)) + (300 - in->y)) ;
 			j++;
 			x++;
 		}
 		i++;
 	}
 	grid(in);
+
 	return (0);
 }

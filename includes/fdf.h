@@ -6,7 +6,7 @@
 /*   By: nhendric <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 16:56:34 by nhendric          #+#    #+#             */
-/*   Updated: 2018/09/05 11:52:53 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/06 14:19:31 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,12 @@ typedef	struct	s_win
 
 typedef	struct	s_data
 {
+	int			r;
+	int			y;
+	int			x;
+	int			neg;
 	int			pull;
+	int			push;
 	char		*map_name;
 	int			map_h;
 	int			map_w;
