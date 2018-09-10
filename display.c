@@ -6,7 +6,7 @@
 /*   By: tpitout <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 08:06:47 by tpitout           #+#    #+#             */
-/*   Updated: 2018/09/06 14:21:57 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/10 12:38:27 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,38 +71,49 @@ void		grid(t_data *in)
 	}
 }
 
-int			fill(t_data *in)
+void		zoom(int i, int j, t_data *z)
+{
+	int		x;
+
+	x = 0;
+	if (z->p > 0)
+	{
+		z->dots[i][j].x *= z->p;
+		z->dots[i][j].y *= z->p;
+	}
+	else if (z->p == 0)
+		z->p--;
+	else
+	{
+		x = z->p;
+		x = x * -1;
+		z->dots[i][j].x /= x;
+		z->dots[i][j].y /= x;
+	}
+}
+	
+
+int			fill(t_data *z)
 {
 	int			i;
 	int			j;
-	int			x;
-	int			a;
-	int			s;
-	int			m;
 
-	m = 30;
-	s = in->push;
-	a = in->pull;
-	x = 0;
 	i = 0;
-
-	while (i < in->map_h)
+	while (i < z->map_h)
 	{
 		j = 0;
-		while (j < in->map_w)	
+		while (j < z->map_w)	
 		{
-			if (30+a-s <= 0)
-				in->neg = 1;
-			else 
-				in->neg = 0;
-			in->dots[i][j].x = (((j * (30+a-s)) + (2) * (-1 * in->dots[i][j].z)) + (300 + in->x)) ;
-			in->dots[i][j].y = (((i * (30+a-s)) + (5)  * (-1 * in->dots[i][j].z)) + (300 - in->y)) ;
+			z->neg = ((15 + z->p <= 0) ? 1 : 0); 
+			z->dots[i][j].x = (((j * (15)) + (1) *
+					   	(-1 * z->dots[i][j].z)) + (100 + z->x));
+			z->dots[i][j].y = (((i * (15)) + (2.5)  *
+					   	(-1 * z->dots[i][j].z)) + (100 - z->y));
+			zoom(i, j, z);
 			j++;
-			x++;
 		}
 		i++;
 	}
-	grid(in);
-
+	grid(z);
 	return (0);
 }

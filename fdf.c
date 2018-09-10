@@ -6,7 +6,7 @@
 /*   By: tpitout <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:46:00 by tpitout           #+#    #+#             */
-/*   Updated: 2018/09/06 14:20:18 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/10 12:39:25 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,19 +27,17 @@ int			press(int key, t_data *in)
 		return (0);
 	}
 	if (key == KEY_ONE)
-		in->pull += 10;
+		in->p += 1;
 	if (key == KEY_TWO && in->neg == 0)
-		in->push += 10;
+		in->p -= 1;
 	if (key == KEY_W)
-		in->y += 20;
-	if (key == KEY_S)
 		in->y -= 20;
+	if (key == KEY_S)
+		in->y += 20;
 	if (key == KEY_A)
-		in->x -= 20;
-	if (key == KEY_D)
 		in->x += 20;
-	if (key == KEY_R)
-		in->r += 20;
+	if (key == KEY_D)
+		in->x -= 20;
 	create(in);
 	return (0);
 }
@@ -67,8 +65,8 @@ int			main(int ac, char **av)
 	in->y  = 0;
 	in->x = 0;
 	in->neg = 0;
-	in->pull = 0;
-	in->push = 0;
+	in->p = 2;
+	in->m = 1;
 	map_read(in);
 	create(in);
 	mlx_key_hook(in->inst.win, press, in);

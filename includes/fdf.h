@@ -6,7 +6,7 @@
 /*   By: nhendric <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 16:56:34 by nhendric          #+#    #+#             */
-/*   Updated: 2018/09/06 14:19:31 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/10 12:01:39 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,8 +111,8 @@ typedef	struct	s_data
 	int			y;
 	int			x;
 	int			neg;
-	int			pull;
-	int			push;
+	int			p;
+	int			m;
 	char		*map_name;
 	int			map_h;
 	int			map_w;
