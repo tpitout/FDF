@@ -6,7 +6,7 @@
 /*   By: tpitout <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:46:00 by tpitout           #+#    #+#             */
-/*   Updated: 2018/09/10 12:39:25 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/10 17:23:07 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,24 @@ void		create(t_data *in)
 	fill(in);
 }
 
-int			press(int key, t_data *in)
+void		printinfo(t_data *x)
+{
+	char	b[22];
+	char	m[46];
+	char	l[46];
+	char	r[29];
+
+	ft_strcpy(b, "WELCOME TO TREDX's FDF");
+	ft_strcpy(m, "TO ZOOM PRESS [1/2] TO MOVE VIEW USE [W/A/S/D]");
+	ft_strcpy(r, "PRESS [R] TO RESET TO DEFAULT");
+	ft_strcpy(l, "______________________________________________");
+	mlx_string_put(x->inst.mlx, x->inst.win, 20, 15, GRN, b);
+	mlx_string_put(x->inst.mlx, x->inst.win, 20, 35, GRN, m);
+	mlx_string_put(x->inst.mlx, x->inst.win, 20, 55, GRN, r);
+	mlx_string_put(x->inst.mlx, x->inst.win, 20, 75, GRN, l);
+}
+
+int		press(int key, t_data *in)
 {
 	if (key == KEY_ESC)
 	{
@@ -28,21 +45,33 @@ int			press(int key, t_data *in)
 	}
 	if (key == KEY_ONE)
 		in->p += 1;
-	if (key == KEY_TWO && in->neg == 0)
+	if (key == KEY_TWO)
 		in->p -= 1;
 	if (key == KEY_W)
-		in->y -= 20;
+		in->y -= 30;
 	if (key == KEY_S)
-		in->y += 20;
+		in->y += 30;
 	if (key == KEY_A)
-		in->x += 20;
+		in->x += 30;
 	if (key == KEY_D)
-		in->x -= 20;
+		in->x -= 30;
+	if (key == KEY_R)
+		reset(in);
 	create(in);
+	printinfo(in);
 	return (0);
 }
 
-int			main(int ac, char **av)
+void		init(t_data *x)
+{
+	x->r = 0;
+	x->y = 0;
+	x->x = 0;
+	x->neg = 0;
+	x->p = 1;
+	x->m = 1;
+}
+int		main(int ac, char **av)
 {
 	t_data	*in;
 
@@ -59,16 +88,12 @@ int			main(int ac, char **av)
 	if (!in->inst.mlx)
 		return (0);
 	if (!(in->inst.win = mlx_new_window(in->inst.mlx,
-							WIN_W, WIN_H, in->map_name)))
+		WIN_W, WIN_H, in->map_name)))
 		return (0);
-	in->r = 0;
-	in->y  = 0;
-	in->x = 0;
-	in->neg = 0;
-	in->p = 2;
-	in->m = 1;
+	init(in);
 	map_read(in);
 	create(in);
+	printinfo(in);
 	mlx_key_hook(in->inst.win, press, in);
 	mlx_loop(in->inst.mlx);
 	return (0);

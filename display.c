@@ -6,7 +6,7 @@
 /*   By: tpitout <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 08:06:47 by tpitout           #+#    #+#             */
-/*   Updated: 2018/09/10 12:38:27 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/10 15:09:53 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,19 @@ void		zoom(int i, int j, t_data *z)
 		z->dots[i][j].x *= z->p;
 		z->dots[i][j].y *= z->p;
 	}
-	else if (z->p == 0)
-		z->p--;
-	else
+	else if (z->p < 0)
 	{
 		x = z->p;
-		x = x * -1;
+		x = (x * -1) + 1;
 		z->dots[i][j].x /= x;
 		z->dots[i][j].y /= x;
 	}
+	else if (z->p == 0)
+	{	
+		z->dots[i][j].x /= 1;
+		z->dots[i][j].y /= 1;
+	}
+	
 }
 	
 
@@ -104,11 +108,10 @@ int			fill(t_data *z)
 		j = 0;
 		while (j < z->map_w)	
 		{
-			z->neg = ((15 + z->p <= 0) ? 1 : 0); 
 			z->dots[i][j].x = (((j * (15)) + (1) *
-					   	(-1 * z->dots[i][j].z)) + (100 + z->x));
+			  (-1 * z->dots[i][j].z)) + (100 + z->x));
 			z->dots[i][j].y = (((i * (15)) + (2.5)  *
-					   	(-1 * z->dots[i][j].z)) + (100 - z->y));
+			 	(-1 * z->dots[i][j].z)) + (100 - z->y));
 			zoom(i, j, z);
 			j++;
 		}

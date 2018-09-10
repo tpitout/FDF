@@ -6,7 +6,7 @@
 /*   By: tpitout <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 10:36:01 by tpitout           #+#    #+#             */
-/*   Updated: 2018/09/05 10:39:53 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/10 17:35:45 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,12 @@ int			line_w(t_data *in)
 	return (0);
 }
 
+void		error(void)
+{
+	ft_putstr(RED "ERROR: INVALID FILE\n");
+	exit(1);
+}
+
 int			map_read(t_data *in)
 {
 	int		i;
@@ -69,7 +75,8 @@ int			map_read(t_data *in)
 	char	*line;
 
 	i = 0;
-	fd = open(in->map_name, O_RDONLY);
+	if ((fd = open(in->map_name, O_RDONLY)) == -1)
+		error();
 	while (get_next_line(fd, &line) > 0)
 		i++;
 	close(fd);

@@ -6,7 +6,7 @@
 #    By: nhendric <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/08/09 13:26:01 by nhendric          #+#    #+#              #
-#    Updated: 2018/08/17 06:52:06 by nhendric         ###   ########.fr        #
+#    Updated: 2018/09/10 17:10:23 by tpitout          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = gcc -o
 FLAG = -Wall -Werror -Wextra
 MLXFLAG = -l mlx -framework OpenGL -framework AppKit
 INC = -I ./includes
-SRC = fdf.c map_read.c display.c
+SRC = fdf.c map_read.c display.c tools.c
 OBJ = $(SRC:.c=.o)
 RM = rm -f
 
