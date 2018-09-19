@@ -6,7 +6,7 @@
 /*   By: tpitout <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 08:06:47 by tpitout           #+#    #+#             */
-/*   Updated: 2018/09/10 15:09:53 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/19 09:51:24 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void		draw(t_dot s, t_dot e, t_data *in)
 		{
 			mlx_pixel_put(in->inst.mlx, in->inst.win, x_c, (((e.y - s.y) /
 							(e.x - s.x)) * x_c + (s.y - ((e.y - s.y) /
-									(e.x - s.x)) * s.x)), 0x00FFFFFF);
+									(e.x - s.x)) * s.x)), 0x0000FF00);
 			x_c++;
 		}
 	}
@@ -43,7 +43,7 @@ void		draw(t_dot s, t_dot e, t_data *in)
 		if (y_c > e.y)
 			y_c = e.y;
 		while (y_c <= s.y || y_c <= e.y)
-			mlx_pixel_put(in->inst.mlx, in->inst.win, s.x, y_c++, 0x00FFFFFF);
+			mlx_pixel_put(in->inst.mlx, in->inst.win, s.x, y_c++, 0x0000FF00);
 	}
 }
 
@@ -101,7 +101,9 @@ int			fill(t_data *z)
 {
 	int			i;
 	int			j;
+	int			l;
 
+	l = 0;
 	i = 0;
 	while (i < z->map_h)
 	{
@@ -114,6 +116,7 @@ int			fill(t_data *z)
 			 	(-1 * z->dots[i][j].z)) + (100 - z->y));
 			zoom(i, j, z);
 			j++;
+			l++;
 		}
 		i++;
 	}
