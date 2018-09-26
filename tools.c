@@ -6,16 +6,23 @@
 /*   By: tpitout <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/10 17:07:25 by tpitout           #+#    #+#             */
-/*   Updated: 2018/09/10 17:08:46 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/26 11:06:36 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fdf.h"
 
-void		reset(t_data *x)
+void	reset(t_data *x)
 {
 	x->y = 0;
 	x->x = 0;
 	x->p = 1;
 	x->m = 1;
+}
+
+float	abs_val(float val)
+{
+	if (val < 0)
+		return (val *= -1);
+	return (val);
 }

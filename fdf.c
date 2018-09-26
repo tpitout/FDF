@@ -6,7 +6,7 @@
 /*   By: tpitout <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/04 13:46:00 by tpitout           #+#    #+#             */
-/*   Updated: 2018/09/19 13:41:48 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/26 11:07:07 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,24 +19,7 @@ void		create(t_data *in)
 	fill(in);
 }
 
-void		printinfo(t_data *x)
-{
-	char	b[22];
-	char	m[46];
-	char	l[46];
-	char	r[29];
-
-	ft_strcpy(b, "WELCOME TO TREDX's FDF");
-	ft_strcpy(m, "TO ZOOM PRESS [1/2] TO MOVE VIEW USE [W/A/S/D]");
-	ft_strcpy(r, "PRESS [R] TO RESET TO DEFAULT");
-	ft_strcpy(l, "______________________________________________");
-	mlx_string_put(x->inst.mlx, x->inst.win, 20, 15, GRN, b);
-	mlx_string_put(x->inst.mlx, x->inst.win, 20, 35, GRN, m);
-	mlx_string_put(x->inst.mlx, x->inst.win, 20, 55, GRN, r);
-	mlx_string_put(x->inst.mlx, x->inst.win, 20, 75, GRN, l);
-}
-
-int		press(int key, t_data *in)
+int			press(int key, t_data *in)
 {
 	if (key == KEY_ESC)
 	{
@@ -62,6 +45,14 @@ int		press(int key, t_data *in)
 	return (0);
 }
 
+int			ft_exit(t_data *in)
+{
+	in->r = 0;
+	in->y = 0;
+	exit(0);
+	return (0);
+}
+
 void		init(t_data *x)
 {
 	x->r = 0;
@@ -71,7 +62,8 @@ void		init(t_data *x)
 	x->p = 1;
 	x->m = 1;
 }
-int		main(int ac, char **av)
+
+int			main(int ac, char **av)
 {
 	t_data	*in;
 
@@ -95,6 +87,7 @@ int		main(int ac, char **av)
 	create(in);
 	printinfo(in);
 	mlx_key_hook(in->inst.win, press, in);
+	mlx_hook(in->inst.win, 17, 0, ft_exit, in);
 	mlx_loop(in->inst.mlx);
 	return (0);
 }

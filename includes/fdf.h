@@ -6,7 +6,7 @@
 /*   By: nhendric <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/08/04 16:56:34 by nhendric          #+#    #+#             */
-/*   Updated: 2018/09/10 17:10:52 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/26 10:53:17 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,17 +94,17 @@ typedef struct	s_dot
 
 typedef	struct	s_proc
 {
-	int		***data_int;
-	int		**cap_int;
+	int			***data_int;
+	int			**cap_int;
 	char		***data;
 	char		**cap;
-}			t_proc;
+}				t_proc;
 
 typedef	struct	s_win
 {
 	void		*mlx;
 	void		*win;
-}			t_win;
+}				t_win;
 
 typedef	struct	s_data
 {
@@ -123,10 +123,11 @@ typedef	struct	s_data
 	t_proc		*data_proc;
 }				t_data;
 
-int			map_read(t_data *input);
-int			line_w(t_data *input);
-int			i_store(t_data *input);
-int			fill(t_data *input);
+void			printinfo(t_data *x);
+int				map_read(t_data *input);
+int				line_w(t_data *input);
+int				i_store(t_data *input);
+int				fill(t_data *input);
 void			grid(t_data *in);
 void			draw(t_dot s, t_dot e, t_data *input);
 float			abs_val(float val);

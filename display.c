@@ -6,23 +6,16 @@
 /*   By: tpitout <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 08:06:47 by tpitout           #+#    #+#             */
-/*   Updated: 2018/09/19 09:51:24 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/26 10:49:02 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "includes/fdf.h"
 
-float		abs_val(float val)
-{
-	if (val < 0)
-		return (val *= -1);
-	return (val);
-}
-
 void		draw(t_dot s, t_dot e, t_data *in)
 {
-	double		x_c;
-	double		y_c;
+	double	x_c;
+	double	y_c;
 
 	if (s.x != e.x)
 	{
@@ -89,31 +82,29 @@ void		zoom(int i, int j, t_data *z)
 		z->dots[i][j].y /= x;
 	}
 	else if (z->p == 0)
-	{	
+	{
 		z->dots[i][j].x /= 1;
 		z->dots[i][j].y /= 1;
 	}
-	
 }
-	
 
 int			fill(t_data *z)
 {
-	int			i;
-	int			j;
-	int			l;
+	int		i;
+	int		j;
+	int		l;
 
 	l = 0;
 	i = 0;
 	while (i < z->map_h)
 	{
 		j = 0;
-		while (j < z->map_w)	
+		while (j < z->map_w)
 		{
 			z->dots[i][j].x = (((j * (15)) + (1) *
-			  (-1 * z->dots[i][j].z)) + (100 + z->x));
-			z->dots[i][j].y = (((i * (15)) + (2.5)  *
-			 	(-1 * z->dots[i][j].z)) + (100 - z->y));
+						(-1 * z->dots[i][j].z)) + (100 + z->x));
+			z->dots[i][j].y = (((i * (15)) + (2.5) *
+						(-1 * z->dots[i][j].z)) + (100 - z->y));
 			zoom(i, j, z);
 			j++;
 			l++;

@@ -6,7 +6,7 @@
 /*   By: tpitout <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/09/05 10:36:01 by tpitout           #+#    #+#             */
-/*   Updated: 2018/09/10 17:35:45 by tpitout          ###   ########.fr       */
+/*   Updated: 2018/09/26 11:10:11 by tpitout          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,21 @@ int			map_read(t_data *in)
 	close(fd);
 	line_w(in);
 	return (0);
+}
+
+void		printinfo(t_data *x)
+{
+	char	b[22];
+	char	m[46];
+	char	l[46];
+	char	r[29];
+
+	ft_strcpy(b, "WELCOME TO TREDX's FDF");
+	ft_strcpy(m, "TO ZOOM PRESS [1/2] TO MOVE VIEW USE [W/A/S/D]");
+	ft_strcpy(r, "PRESS [R] TO RESET TO DEFAULT");
+	ft_strcpy(l, "______________________________________________");
+	mlx_string_put(x->inst.mlx, x->inst.win, 20, 15, GRN, b);
+	mlx_string_put(x->inst.mlx, x->inst.win, 20, 35, GRN, m);
+	mlx_string_put(x->inst.mlx, x->inst.win, 20, 55, GRN, r);
+	mlx_string_put(x->inst.mlx, x->inst.win, 20, 75, GRN, l);
 }
