@@ -12,7 +12,11 @@ FDF is a 42 Project to learn about 3d programming. The program takes a map as pa
 
 >Ex. ./FDF/maps/42.fdf
 
-![FDFt](https://github.com/tpitout/FDF/blob/master/FDF_42.png)
+**TEXTFILE**
+![FDF](https://github.com/tpitout/FDF/blob/master/text_file.png)
+**RENDER**
+![FDF](https://github.com/tpitout/FDF/blob/master/FDF_42.png)
+**SCORE**
 ![score](https://github.com/tpitout/FDF/blob/master/FDF_Score.png)
 
 TPITOUT
