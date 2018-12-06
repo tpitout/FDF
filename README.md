@@ -5,8 +5,11 @@ FDF is a 42 Project to learn about 3d programming. The program takes a map as pa
 
 *HOW TO RUN:*
 > Install "minilibx"
+
 >Enter "make re"
+
 >Enter "./FDF/ [ENTER MAP NAME HERE]"
+
 >Ex. ./FDF/maps/42.fdf
 
 ![FDFt](https://github.com/tpitout/FDF/blob/master/FDF_42.png)
